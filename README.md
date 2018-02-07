@@ -9,7 +9,7 @@ You can read more about NEC2++ in the following publication:
 > Timothy C.A. Molteno, ''NEC2++: An NEC-2 compatible Numerical Electromagnetics Code'', Electronics Technical Reports No. 2014-3, ISSN 1172-496X, October 2014.
 
 NEC.jl is a high-level Julia interface to NEC's functionality.
-Most implementations and interfaces (including PyNEC) faithfully capture the functionality of NEC-2 but retain the card-based FORTRAN structure, which is not particularly intuitive.
+Most implementations and interfaces faithfully capture the functionality of NEC-2 but retain the card-based FORTRAN structure, which is not particularly intuitive.
 The goal of NEC.jl is to separate the structure from the user and provide an intuitive, high-level interface.
 NEC.jl is meant for amateurs with little training in electromagnetics (like myself) who want to simulate and design simple antennas.
 
@@ -24,7 +24,38 @@ If there's functionality you need, please file an issue.
 
 # Installation
 
-# Structures
+Because this package currently uses PyNEC as a backend, you must install PyNEC on your machine.
+I've only tested NEC.jl on Ubuntu, but it should work so long as you can get PyNEC installed.
+The installation instructions for PyNEC are [here](https://github.com/tmolteno/python-necpp/tree/master/PyNEC).
+If you have successfully installed PyNEC, you should be able to open up Python and run the following line without error:
+```python
+from PyNEC import *
+```
+
+You also need to have [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) installed and properly configured.
+To install, run the following in Julia:
+```
+Pkg.add("PyCall")
+```
+Sometimes (by deafult?) PyCall.jl stores its own version of Python in the Conda.jl package.
+This Python is private to Julia,
+```julia
+ENV["PYTHON"]="... path of python program you want ..."
+Pkg.build("PyCall")
+```
+If you want to switch back to Julia's private version of Python, you can `ENV["PYTHON"]=""` and then call `Pkg.build("PyCall"). However, NEC.jl will not work until you switch back to the path that PyNEC is associated with.
+
+Once you have PyNEC installed and PyCall properly configured, you can install this package by calling the following in Julia:
+```julia
+Pkg.clone("https://github.com/dressel/NEC.jl")
+```
+You should then be able to use the package by typing the following in Julia:
+```julia
+using NEC
+```
+
+
+# Antennas and Structures
 
 ### Wire
 
