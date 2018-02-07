@@ -1,4 +1,15 @@
-# NEC
+# NEC.jl
+
+The Numerical Electromagnetics Code (NEC) is antenna modeling software originally produced by Lawrence Livermore National Laboratory.
+Various versions were made, with the most popular being NEC-2 because its source code was released to the public.
+
+NEC-2 was originally written in FORTRAN, but it has been re-implemented in C and C++.
+[NEC2++](https://github.com/tmolteno/necpp) is an open-source C++ implementation that has C API and a python API ([PyNEC](https://github.com/tmolteno/python-necpp/tree/master/PyNEC)).
+You can read more about NEC2++ with the following publication:
+> Timothy C.A. Molteno, ''NEC2++: An NEC-2 compatible Numerical Electromagnetics Code'', Electronics Technical Reports No. 2014-3, ISSN 1172-496X, October 2014.
+
+This package is a high-level Julia interface to NEC's functionality.
+Currently, the backend interfaces with PyNEC which interfaces with NEC2++.
 
 # Installation
 
@@ -55,8 +66,8 @@ where the arguments are:
 * `lengths` - A vector of floats, with as many elements as the Yagi antenna. The first element is the length of the reflector, the second is the length of the driven element, and the remaining elements are the lengths of the directors. All lengths are in meters.
 * `xvals` - A vector with one fewer element than the Yagi. The first element is the x-location of the reflector, which should be a negative value. The rest of the elements are the x-location of the directors, which should be positive values. The order must match the director order in `lengths`. All distances are in meters.
 * `rad` - The radius of all segments (in meters).
-* `ns` - If a single number is provided, all elements will be broken into the same number of segments. Alternatively, `ns` can be a vector of segment numbers. The indexing should match that of `lengths`.
-* `z` The altitude of the antenna.
+* `ns` - If a single number is provided, each element will be broken into `ns` segments. Alternatively, `ns` can be a vector of segment counts. The indexing should match that of `lengths`.
+* `z` - The altitude of the antenna.
 
 Note that this command will place the Yagi elements so they are parallel to the y-axis, with the front of the antenna pointing along the positive x-axis.
 
