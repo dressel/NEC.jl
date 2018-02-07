@@ -14,7 +14,7 @@ The goal of NEC.jl is to separate the structure from the user and provide an int
 NEC.jl is meant for amateurs with little training in electromagnetics (like myself).
 
 Currently, the backend interfaces with PyNEC which interfaces with NEC2++.
-I chose this convoluted setup because PyNEC is: (1) easy to install, (2) instals NEC2++ for the user, and (3) is easy to call in Julia via PyCall.
+I chose this convoluted setup because PyNEC is: (1) easy to install, (2) installs NEC2++ for the user, and (3) is easy to call in Julia via PyCall.
 An alternative is to access NEC2++'s C API via `ccall`; another is to access the C++ code directly with [Cxx.jl](https://github.com/Keno/Cxx.jl), but I'm not sure if that package is mainstream yet.
 Ultimately, it would be nice to do a complete rewrite of NEC-2 in Julia.
 Regardless of backend changes, the interface should remain intuitive and unchanged.
