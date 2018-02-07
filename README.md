@@ -11,7 +11,7 @@ You can read more about NEC2++ in the following publication:
 NEC.jl is a high-level Julia interface to NEC's functionality.
 Most implementations and interfaces (including PyNEC) faithfully capture the functionality of NEC-2 but retain the card-based FORTRAN structure, which is not particularly intuitive.
 The goal of NEC.jl is to separate the structure from the user and provide an intuitive, high-level interface.
-NEC.jl is meant for amateurs with little training in electromagnetics (like myself).
+NEC.jl is meant for amateurs with little training in electromagnetics (like myself) who want to simulate and design simple antennas.
 
 Currently, the backend interfaces with PyNEC which interfaces with NEC2++.
 I chose this convoluted setup because PyNEC is: (1) easy to install, (2) installs NEC2++ for the user, and (3) is easy to call in Julia via PyCall.
