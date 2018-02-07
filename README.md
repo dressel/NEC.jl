@@ -20,7 +20,7 @@ Ultimately, it would be nice to do a complete rewrite of NEC-2 in Julia.
 Regardless of backend changes, the interface should remain intuitive and unchanged.
 
 Obviously, NEC.jl is a work in progress. I've favored functionality that I personally need, and I've favored simplicity over capturing the full functionality of NEC-2.
-If there's functionality you need, please leave an issue.
+If there's functionality you need, please file an issue.
 
 # Installation
 
