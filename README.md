@@ -5,11 +5,22 @@ Various versions were made, with the most popular being NEC-2 because its source
 
 NEC-2 was originally written in FORTRAN, but it has been re-implemented in C and C++.
 [NEC2++](https://github.com/tmolteno/necpp) is an open-source C++ implementation that has C API and a python API ([PyNEC](https://github.com/tmolteno/python-necpp/tree/master/PyNEC)).
-You can read more about NEC2++ with the following publication:
+You can read more about NEC2++ in the following publication:
 > Timothy C.A. Molteno, ''NEC2++: An NEC-2 compatible Numerical Electromagnetics Code'', Electronics Technical Reports No. 2014-3, ISSN 1172-496X, October 2014.
 
 This package is a high-level Julia interface to NEC's functionality.
+While faithfully capturing the functionality of NEC-2, most implementations and interfaces (including PyNEC) retain the card-based FORTRAN structure, which is not particularly intuitive.
+The goal of NEC.jl is to separate the structure from the user and provide an intuitive, high-level interface.
+NEC.jl is meant for amateurs with little training in electromagnetics (like myself).
+
 Currently, the backend interfaces with PyNEC which interfaces with NEC2++.
+I chose this convoluted setup because PyNEC is: (1) easy to install, (2) instals NEC2++ for the user, and (3) is easy to call in Julia via PyCall.
+An alternative is to access NEC2++'s C API via `ccall`; another is to access the C++ code directly with [Cxx.jl](https://github.com/Keno/Cxx.jl), but I'm not sure if that package is mainstream yet.
+Ultimately, it would be nice to do a complete rewrite of NEC-2 in Julia.
+Regardless of backend changes, the interface should remain intuitive and unchanged.
+
+Obviously, NEC.jl is a work in progress. I've favored functionality that I personally need, and I've favored simplicity over capturing the full functionality of NEC-2.
+If there's functionality you need, please leave an issue.
 
 # Installation
 
@@ -75,10 +86,10 @@ Note that this command will place the Yagi elements so they are parallel to the 
 
 ### Moxon
 
+# Bibliography
+
 # Badges
 
 [![Build Status](https://travis-ci.org/dressel/NEC.jl.svg?branch=master)](https://travis-ci.org/dressel/NEC.jl)
-
 [![Coverage Status](https://coveralls.io/repos/dressel/NEC.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/dressel/NEC.jl?branch=master)
-
 [![codecov.io](http://codecov.io/github/dressel/NEC.jl/coverage.svg?branch=master)](http://codecov.io/github/dressel/NEC.jl?branch=master)
