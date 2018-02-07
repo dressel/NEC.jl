@@ -9,7 +9,7 @@ You can read more about NEC2++ in the following publication:
 > Timothy C.A. Molteno, ''NEC2++: An NEC-2 compatible Numerical Electromagnetics Code'', Electronics Technical Reports No. 2014-3, ISSN 1172-496X, October 2014.
 
 NEC.jl is a high-level Julia interface to NEC's functionality.
-While faithfully capturing the functionality of NEC-2, most implementations and interfaces (including PyNEC) retain the card-based FORTRAN structure, which is not particularly intuitive.
+Most implementations and interfaces (including PyNEC) faithfully capture the functionality of NEC-2 but retain the card-based FORTRAN structure, which is not particularly intuitive.
 The goal of NEC.jl is to separate the structure from the user and provide an intuitive, high-level interface.
 NEC.jl is meant for amateurs with little training in electromagnetics (like myself).
 
