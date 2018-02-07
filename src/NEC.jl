@@ -6,6 +6,8 @@ const Structure = Vector{StructuralElement}
 export
     Wire,
 
+    Yagi,
+
     Excitation,
     VoltageSource,
     LinearWave,
@@ -14,6 +16,8 @@ export
 
 
 include("wire.jl")
+
+include("yagi.jl")
 
 include("excitation.jl")
 

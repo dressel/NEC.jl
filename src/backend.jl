@@ -8,7 +8,7 @@ using PyCall
 @pyimport PyNEC as pn
 
 function geo_card(geo::PyObject, w::Wire, tag_id::Int)
-    geo[:wire](tag_id, w.n_segments, w.a..., w.b..., w.rad, 1.0, 1.0)
+    geo[:wire](tag_id, w.n_segments, w.a..., w.b..., w.rad, w.rdel, w.rrad)
 end
 
 function ex_card(context::PyObject, vs::VoltageSource, s)
