@@ -38,9 +38,11 @@ To install, run the following in Julia:
 Pkg.add("PyCall")
 ```
 Sometimes (by deafult?) PyCall.jl stores its own version of Python in the Conda.jl package.
-This Python is private to Julia,
+This Python version is private to Julia and will not be able to access PyNEC.
+PyNEC is associated with your machine's default Python (the version that opens up when you type "python" into the terminal).
+To make Julia use this version of Python (and therefore have access to PyNEC), you must do the following in Julia:
 ```julia
-ENV["PYTHON"]="... path of python program you want ..."
+ENV["PYTHON"]="... path of your machine's default python ..."
 Pkg.build("PyCall")
 ```
 If you want to switch back to Julia's private version of Python, you can `ENV["PYTHON"]=""` and then call `Pkg.build("PyCall"). However, NEC.jl will not work until you switch back to the path that PyNEC is associated with.
