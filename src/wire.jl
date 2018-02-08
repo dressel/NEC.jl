@@ -10,3 +10,8 @@ struct Wire <: StructuralElement
     rrad::Float64   # ratio of radii of adjacent segments
 end
 Wire(a, b, rad, n_segments) = Wire(a, b, rad, n_segments, 1, 1)
+
+# returns the middle segment index of a wire
+# TODO: determine the indexing issue
+#           ? not sure if should add one
+Base.middle(wire::Wire) = div(wire.n_segments, 2) + 1

@@ -6,22 +6,27 @@ const Structure = Vector{StructuralElement}
 export
     Wire,
 
-    Yagi,
-
     Excitation,
     VoltageSource,
     LinearWave,
 
+    Yagi,
+    Moxon,
+
     RadiationPattern
 
 
+# structural elements
 include("wire.jl")
 
-include("yagi.jl")
-
+# basic radiation things
 include("excitation.jl")
-
 include("radiation_pattern.jl")
+
+# pre-made antenna types
+abstract type AbstractAntenna end
+include("yagi.jl")
+include("moxon.jl")
 
 include("backend.jl")
 

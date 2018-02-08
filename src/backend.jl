@@ -71,17 +71,18 @@ function RadiationPattern(s, ex::Excitation, fmhz::Real)
 
     # rp_card
     context[:rp_card](0,        # I1 - 0 = normal mode
-                      91,       # I2 - num theta values
-                      1,        # I3 - num phi values
+                      181,       # I2 - num theta values
+                      361,        # I3 - num phi values
                       0,        # I4-X - output format 
-                      5,        # I4-N - normalization
+                      #5,        # I4-N - normalization
+                      0,        # I4-N - normalization
                       0,        # I4-D - powergain or directive gain
                       0,        # I4-A - Averaging?
                       0.0,      # F1 - initial theta angle
                       #45.0,     # F2 - initial phi angle
                       0.0,     # F2 - initial phi angle
-                      4.0,      # F3 - theta increment
-                      2.0,      # F4 - phi increment
+                      1.0,      # F3 - theta increment
+                      1.0,      # F4 - phi increment
                       0.0,      # F5 - Radial distance
                       0.0       # F6 - Gain normalization factor
                      )

@@ -4,7 +4,7 @@
 # Makes it easy for the user to define a Yagi-Uda antenna
 ######################################################################
 
-struct Yagi
+struct Yagi <: AbstractAntenna
     wires::Vector{Wire}
 end
 
@@ -52,4 +52,10 @@ end
 function Yagi(lengths, xvals, rad, n_segments::Int; z::Float64=2.0)
     ns_vec = n_segments * ones(Int, length(lengths))
     return Yagi(lengths, xvals, rad, ns_vec; z = z)
+end
+
+
+# TODO: shouldn't we allow V to be complex?
+function VoltageSource(yagi::Yagi; v::Float64=1.0)
+    return VoltageSource(yagi.wires[2], middle(yagi.wires[2]), v)
 end
