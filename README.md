@@ -40,9 +40,11 @@ Pkg.add("PyCall")
 Sometimes (by deafult?) PyCall.jl stores its own version of Python in the Conda.jl package.
 This Python version is private to Julia and will not be able to access PyNEC.
 PyNEC is associated with your machine's default Python (the version that opens up when you type "python" into the terminal).
-To make Julia use this version of Python (and therefore have access to PyNEC), you must do the following in Julia:
+In Ubuntu, you can find this version by typing `which python` into the terminal.
+On my machine (and likely on yours), the response is `/usr/bin/python`.
+To make PyCall use this version of Python (and therefore have access to PyNEC), you must do the following in Julia:
 ```julia
-ENV["PYTHON"]="... path of your machine's default python ..."
+ENV["PYTHON"]="/usr/bin/python"
 Pkg.build("PyCall")
 ```
 If you want to switch back to Julia's private version of Python, you can `ENV["PYTHON"]=""` and then call `Pkg.build("PyCall"). However, NEC.jl will not work until you switch back to the path that PyNEC is associated with.
@@ -118,6 +120,8 @@ Note that this command will place the Yagi elements so they are parallel to the 
 
 
 ### Moxon
+
+# RadiationPatterns
 
 # Bibliography
 
