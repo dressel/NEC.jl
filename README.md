@@ -47,7 +47,8 @@ To make PyCall use this version of Python (and therefore have access to PyNEC), 
 ENV["PYTHON"]="/usr/bin/python"
 Pkg.build("PyCall")
 ```
-To switch back to Julia's private version of Python, you can set `ENV["PYTHON"]=""` and then call `Pkg.build("PyCall"). However, NEC.jl will not work until you switch back to the path PyNEC is associated with.
+To switch back to Julia's private version of Python, you can set `ENV["PYTHON"]=""` and then call `Pkg.build("PyCall")`.
+ However, NEC.jl will not work until you switch back to the path PyNEC is associated with.
 
 Once you have PyNEC installed and PyCall properly configured, you can install this package by calling the following in Julia:
 ```julia
