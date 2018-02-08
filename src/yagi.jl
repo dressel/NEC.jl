@@ -44,7 +44,7 @@ function Yagi(lengths::Vector{Float64},
         half_len = lengths[i] / 2.0
         a = (xvals[i-1], half_len, z)
         b = (xvals[i-1], -half_len, z)
-        wires[i] = Wire(a, b, rad, ns_vec[3])
+        wires[i] = Wire(a, b, rad, ns_vec[i])
     end
 
     return Yagi(wires)
