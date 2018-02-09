@@ -72,9 +72,9 @@ So, if you are working with size 14 AWG wire, you can put `AWG14` whenever the w
 The coordinate system is a right-hand coordinate system with the x- and y-axes forming a plane and the z-axis pointing up.
 I've read in some places that NEC-2 would not allow negative z-values, but in (brief) testing that doesn't seem to be a limitation with NEC2++.
 
-The azimuth angle is denoted `theta` and is 0 degrees along the positive x-axis.
+The azimuth angle `phi` is displacement in the x-y plane and is 0 degrees along the positive x-axis.
 Azimuth increases according to the right hand rule (along the positive z-axis), so the positive y-axis is at 90 degrees.
-The inclination angle `phi` ranges from 0 to 180 degrees; 0 degrees points along the positive z-axis, 90 degrees points along the horizontal plain, and 180 degrees points along the negative z-axis.
+The inclination angle `theta` ranges from 0 to 180 degrees; 0 degrees points along the positive z-axis, 90 degrees points along the horizontal plain, and 180 degrees points along the negative z-axis.
 To get the elevation angle, or the angle above the horizon, simply subtract the inclination from 90 (elevation = 90 - inclination).
 
 # Structures
