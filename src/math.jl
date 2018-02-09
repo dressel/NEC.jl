@@ -30,7 +30,44 @@ function divide(L::Real, fmhz::Real)
         n_segments += 1
     end
 
-    # make sure we aren't too small
+    # TODO:
+    # make sure we have some minimum number of segments but not too many
 
     return n_segments
+end
+
+# These constants store the diameters (in meters) of different AWG gauges
+export
+    AWG12,
+    AWG13,
+    AWG14,
+    AWG15,
+    AWG16,
+    AWG17
+
+const AWG12 = 0.0020525
+const AWG13 = 0.0018278
+const AWG14 = 0.0016277
+const AWG15 = 0.0014495
+const AWG16 = 0.0012908
+const AWG17 = 0.0011495
+
+export awg2diam
+function awg2diam(awg::Int)
+    if awg == 14
+        return AWG14
+    elseif awg == 15
+        return AWG15
+    elseif awg == 16
+        return AWG16
+    elseif awg == 17
+        return AWG17
+    else
+        error("Are you sure $(awg) AWG exists?")
+    end
+end
+
+export awg2rad
+function awg2rad(awg::Int)
+    return awg2diam(awg) / 2.0
 end
