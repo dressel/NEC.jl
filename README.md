@@ -64,7 +64,8 @@ using NEC
 In this package, all spatial units are in meters and all angular measurements are in degrees.
 When wire thickness is needed, this package always expects a radius (not a diameter).
 
-Wire sizes are sometimes expressed in American Wire Gauge (AWG), and NEC.jl helps you convert this to radius.
+In the real world, wire sizes are sometimes expressed in American Wire Gauge (AWG).
+NEC.jl helps convert this to a radius in meters.
 For example, the constant `AWG14` gives the radius of AWG 14 wire (in meters).
 So, if you are working with size 14 AWG wire, you can put `AWG14` whenever the wire radius is expected.
 
