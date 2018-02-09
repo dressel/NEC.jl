@@ -59,8 +59,24 @@ You should then be able to use the package by typing the following in Julia:
 using NEC
 ```
 
+# Units and Coordinate Systems
 
-# Antennas and Structures
+In this package, all spatial units are in meters and all angular measurements are in degrees.
+When wire thickness is needed, this package always expects a radius (not a diameter).
+
+Wire sizes are sometimes expressed in American Wire Gauge (AWG), and NEC.jl helps you convert this to radius.
+For example, the constant `AWG14` gives the radius of AWG 14 wire (in meters).
+So, if you are working with size 14 AWG wire, you can put `AWG14` whenever the wire radius is expected.
+
+The coordinate system is a right-hand coordinate system with the x- and y-axes forming a plane and the z-axis pointing up.
+I've read in some places that NEC-2 would not allow negative z-values, but in (brief) testing that doesn't seem to be a limitation with NEC2++.
+
+The azimuth angle is denoted `theta` and is 0 degrees along the positive x-axis.
+Azimuth increases according to the right hand rule (along the positive z-axis), so the positive y-axis is at 90 degrees.
+The inclination angle `phi` ranges from 0 to 180 degrees; 0 degrees points along the positive z-axis, 90 degrees points along the horizontal plain, and 180 degrees points along the negative z-axis.
+To get the elevation angle, or the angle above the horizon, simply subtract the inclination from 90 (elevation = 90 - inclination).
+
+# Structures
 
 ### Wire
 
@@ -93,6 +109,10 @@ b = (0,0,2)
 Wire(a, b, 0.001, 33)
 ```
 
+# Antennas
+
+Antennas are just a collection of wires. The following pre-made types simplify the process of creating common antenna types.
+
 ### Yagi
 
 ```julia
@@ -121,6 +141,8 @@ Note that this command will place the Yagi elements so they are parallel to the 
 
 
 ### Moxon
+
+### Dipole
 
 # RadiationPatterns
 

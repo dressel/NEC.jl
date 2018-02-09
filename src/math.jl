@@ -36,7 +36,7 @@ function divide(L::Real, fmhz::Real)
     return n_segments
 end
 
-# These constants store the diameters (in meters) of different AWG gauges
+# These constants store the RADIUS (in meters) of different AWG gauges
 export
     AWG12,
     AWG13,
@@ -45,23 +45,29 @@ export
     AWG16,
     AWG17
 
-const AWG12 = 0.0020525
-const AWG13 = 0.0018278
-const AWG14 = 0.0016277
-const AWG15 = 0.0014495
-const AWG16 = 0.0012908
-const AWG17 = 0.0011495
+""" Radius in meters of size 12 AWG (American Wire Gauge) """
+const AWG12 = 0.0020525 / 2.0
+""" Radius in meters of size 13 AWG (American Wire Gauge) """
+const AWG13 = 0.0018278 / 2.0
+""" Radius in meters of size 14 AWG (American Wire Gauge) """
+const AWG14 = 0.0016277 / 2.0
+""" Radius in meters of size 15 AWG (American Wire Gauge) """
+const AWG15 = 0.0014495 / 2.0
+""" Radius in meters of size 16 AWG (American Wire Gauge) """
+const AWG16 = 0.0012908 / 2.0
+""" Radius in meters of size 17 AWG (American Wire Gauge) """
+const AWG17 = 0.0011495 / 2.0
 
 export awg2diam
 function awg2diam(awg::Int)
     if awg == 14
-        return AWG14
+        return AWG14 * 2.0
     elseif awg == 15
-        return AWG15
+        return AWG15 * 2.0
     elseif awg == 16
-        return AWG16
+        return AWG16 * 2.0
     elseif awg == 17
-        return AWG17
+        return AWG17 * 2.0
     else
         error("Are you sure $(awg) AWG exists?")
     end
