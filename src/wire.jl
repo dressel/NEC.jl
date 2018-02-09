@@ -11,7 +11,14 @@ struct Wire <: StructuralElement
 end
 Wire(a, b, rad, n_segments) = Wire(a, b, rad, n_segments, 1, 1)
 
-# returns the middle segment index of a wire
-# TODO: determine the indexing issue
-#           ? not sure if should add one
+# If there are 21 segments, they are indexed 1-21 (not 0-20).
+#  So we'd want to return 11, and div(21,2) returns 10.
 Base.middle(wire::Wire) = div(wire.n_segments, 2) + 1
+
+function Base.length(w::Wire)
+    dx = w.a[1] - w.b[1]
+    dy = w.a[2] - w.b[2]
+    dz = w.a[3] - w.b[3]
+
+    return sqrt(dx*dx + dy*dy + dz*dz)
+end

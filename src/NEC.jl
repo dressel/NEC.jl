@@ -2,6 +2,7 @@ module NEC
 
 abstract type StructuralElement end
 const Structure = Vector{StructuralElement}
+abstract type AbstractAntenna end
 
 export
     Wire,
@@ -10,11 +11,15 @@ export
     VoltageSource,
     LinearWave,
 
+    AbstractAntenna,
     Yagi,
     Moxon,
 
     RadiationPattern
 
+
+# functions I might need
+include("math.jl")
 
 # structural elements
 include("wire.jl")
@@ -24,7 +29,6 @@ include("excitation.jl")
 include("radiation_pattern.jl")
 
 # pre-made antenna types
-abstract type AbstractAntenna end
 include("yagi.jl")
 include("moxon.jl")
 
