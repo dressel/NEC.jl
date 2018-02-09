@@ -14,6 +14,7 @@ export
     AbstractAntenna,
     Yagi,
     Moxon,
+    Dipole,
 
     RadiationPattern
 
@@ -31,6 +32,7 @@ include("radiation_pattern.jl")
 # pre-made antenna types
 include("yagi.jl")
 include("moxon.jl")
+include("dipole.jl")
 
 include("backend.jl")
 
