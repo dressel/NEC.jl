@@ -61,7 +61,7 @@ using NEC
 
 # Units and Coordinate Systems
 
-In this package, all spatial units are in meters and all angular measurements are in degrees.
+In this package, all spatial units are in meters, all frequencies are in megahertz, and all angular measurements are in degrees.
 When wire thickness is needed, this package always expects a radius (not a diameter).
 
 In the real world, wire sizes are sometimes expressed in American Wire Gauge (AWG).
