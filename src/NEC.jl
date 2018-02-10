@@ -16,7 +16,8 @@ export
     Moxon,
     Dipole,
 
-    RadiationPattern
+    RadiationPattern,
+    f2b
 
 
 # functions I might need

@@ -46,7 +46,11 @@ function ex_card(context::PyObject, lw::LinearWave, s)
                      )
 end
 
-function RadiationPattern(s, ex::Excitation, fmhz::Real)
+
+function RadiationPattern(s, ex::Excitation, fmhz::Real;
+                          thetas::RealOrRange=0:180,
+                          phis::RealOrRange=0:360
+                         )
     # create context
     context = pn.nec_context()
 
@@ -70,21 +74,19 @@ function RadiationPattern(s, ex::Excitation, fmhz::Real)
     context[:fr_card](0, 1, fmhz, 0)
 
     # rp_card
-    context[:rp_card](0,        # I1 - 0 = normal mode
-                      181,       # I2 - num theta values
-                      361,        # I3 - num phi values
-                      0,        # I4-X - output format 
-                      #5,        # I4-N - normalization
-                      0,        # I4-N - normalization
-                      0,        # I4-D - powergain or directive gain
-                      0,        # I4-A - Averaging?
-                      0.0,      # F1 - initial theta angle
-                      #45.0,     # F2 - initial phi angle
-                      0.0,     # F2 - initial phi angle
-                      1.0,      # F3 - theta increment
-                      1.0,      # F4 - phi increment
-                      0.0,      # F5 - Radial distance
-                      0.0       # F6 - Gain normalization factor
+    context[:rp_card](0,                    # I1 - 0 = normal mode
+                      length(thetas),       # I2 - num theta values
+                      length(phis),         # I3 - num phi values
+                      0,                # I4-X - output format 
+                      0,                # I4-N - normalization
+                      0,                # I4-D - powergain or directive gain
+                      0,                # I4-A - Averaging?
+                      istart(thetas),       # F1 - initial theta angle
+                      istart(phis),         # F2 - initial phi angle
+                      step(thetas),         # F3 - theta increment
+                      step(phis),           # F4 - phi increment
+                      0.0,              # F5 - Radial distance
+                      0.0               # F6 - Gain normalization factor
                      )
 
     # get radiation pattern

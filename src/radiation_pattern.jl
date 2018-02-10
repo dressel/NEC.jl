@@ -5,10 +5,20 @@ struct RadiationPattern
     phis::Vector{Float64}       # elevation angles (I think)
 end
 
-function RadiationPattern(a::AbstractAntenna, fmhz::Real)
+# the following is just so we can pass in reals or ranges
+RealOrRange = Union{Real,Range}
+istart(r::Real) = r
+istart(r::Range) = start(r)
+Base.step(r::Real) = 1       # doesn't matter, could be any number
+
+function RadiationPattern(a::AbstractAntenna, fmhz::Real;
+                          thetas::RealOrRange=0:180,
+                          phis::RealOrRange=0:360
+                         )
     vs = VoltageSource(a)
-    return RadiationPattern(a.wires, vs, fmhz)
+    return RadiationPattern(a.wires, vs, fmhz; thetas=thetas, phis=phis)
 end
+
 
 
 # returns:
@@ -24,4 +34,16 @@ function Base.max(rp::RadiationPattern)
     phi = mod(rp.phis[phi_idx], 360.0)      # ensure 360.0 treated as zero
 
     return max_db, theta, phi
+end
+
+# TODO: find the horizontal plane, don't just assume it is at index 91
+function hpat(rp::RadiationPattern)
+    return rp.thetas, vec(rp.gains_db[91,:])
+end
+
+# TODO: dont just assume it is at index 91
+# TODO: this is a train wreck
+function f2b(rp::RadiationPattern)
+    thetas, gains_db = hpat(rp)
+    return gains_db[1] , gains_db[181]
 end
