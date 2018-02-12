@@ -67,7 +67,7 @@ When wire thickness is needed, this package always expects a radius (not a diame
 In the real world, wire sizes are sometimes expressed in American Wire Gauge (AWG).
 NEC.jl helps convert this to a radius in meters.
 For example, the constant `AWG14` gives the radius of AWG 14 wire (in meters).
-So, if you are working with size 14 AWG wire, you can put `AWG14` whenever the wire radius is expected.
+So, if you are working with size 14 AWG wire, you can put `AWG14` wherever the wire radius is expected.
 
 The coordinate system is a right-hand coordinate system with the x- and y-axes forming a plane and the z-axis pointing up.
 I've read in some places that NEC-2 would not allow negative z-values, but in (brief) testing that doesn't seem to be a limitation with NEC2++.
