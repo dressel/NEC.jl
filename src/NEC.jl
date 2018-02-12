@@ -24,8 +24,6 @@ export
     divide
 
 export
-    awg,
-
     AWG1,
     AWG2,
     AWG3,
