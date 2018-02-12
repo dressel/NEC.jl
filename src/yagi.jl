@@ -8,20 +8,30 @@ struct Yagi <: AbstractAntenna
     wires::Vector{Wire}
 end
 
-# TODO: don't make lengths as restrictive as Float64
 # TODO: radius of each wire could be different
-# TODO: number of segments for each wire could differ
-# TODO: don't make default altitude 2 meters... what a random number
 # TODO: check that lengths, ns_vec, distances are the right length
 """
+Creates a Yagi antenna pointing in the +x direction, with the driven element lying along the y-axis.
+
 `Yagi(lengths, distances, rad, ns; z=0.0)`
+
+where
+* `lengths` is lengths of elements in meters. Element order is reflector, driven, then 1st director, etc).
+* `distances` is distances between Yagi elements.
+* `rad` is the wire radius in meters (assumed same for all wires).
+* `ns` is number of segments per wire
+* `z` is the altitude of the antenna (position along z-axis).
+
+An alternative constructor concatenates `lengths` and `distances` into one vector `params `:
+
+`Yagi(params, rad, ns; z=0.0)`
 """
-function Yagi(lengths::Vector{Float64},
-              distances::Vector{Float64},
-              rad::Float64,                 # radius of wires, in meters
-              ns_vec::Vector{Int};          # number of segments per wire
-              z::Real=0.0                # altitude of yagi in meters
-             )
+function Yagi(lengths::Vector{T1},
+              distances::Vector{T2},
+              rad::Float64,             # radius of wires, in meters
+              ns_vec::Vector{Int};      # number of segments per wire
+              z::Real=0                 # altitude of yagi in meters
+             ) where {T1<:Real, T2<:Real}
 
     # create vector of wires
     num_wires = length(lengths)
@@ -49,11 +59,11 @@ function Yagi(lengths::Vector{Float64},
 
     return Yagi(wires)
 end
-function Yagi(lengths, distances, rad, n_segments::Int; z::Float64=0.0)
+function Yagi(lengths, distances, rad, n_segments::Int; z::Real=0)
     ns_vec = n_segments * ones(Int, length(lengths))
     return Yagi(lengths, distances, rad, ns_vec; z = z)
 end
-function Yagi(params, rad::Real, n_segments; z::Float64=0.0)
+function Yagi(params, rad::Real, n_segments; z::Real=0)
     n_elements = div(length(params), 2) + 1
     lengths = params[1:n_elements]
     distances = params[(n_elements+1):end]
