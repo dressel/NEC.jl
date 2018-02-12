@@ -7,14 +7,14 @@
 struct Moxon <: AbstractAntenna
     wires::Vector{Wire}
 end
-function Moxon(a::Real, b::Real, c::Real, d::Real, rad::Real, fmhz::Real; z=2.0)
+function Moxon(a::Real, b::Real, c::Real, d::Real, rad::Real, fmhz::Real; z::Real=0)
     seg_vec = Vector{Int}(4)
     seg_vec[1] = seg_vec[2] = divide(a, fmhz)
     seg_vec[3] = divide(b, fmhz)
     seg_vec[4] = divide(d, fmhz)
     return Moxon(a, b, c, d, rad, seg_vec)
 end
-function Moxon(a::Real, b::Real, c::Real, d::Real, rad::Real, seg_vec::Vector{Int}; z=2.0)
+function Moxon(a::Real, b::Real, c::Real, d::Real, rad::Real, seg_vec::Vector{Int}; z::Real=0)
     wires = Vector{Wire}(6)
 
     # driven element

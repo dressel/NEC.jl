@@ -148,6 +148,17 @@ Note that these commands place the Yagi elements parallel to the y-axis, with th
 
 ### Moxon
 
+The following commands create a Moxon antenna with the driven element along the y-axis, and the reflector behind it.
+The front of the antenna points in the +x direction.
+```julia
+Moxon(a, b, c, d, rad, seg_vec; z=0)
+Moxon(a, b, c, d, rad, fmhz; z=0)
+```
+The arguments `a`, `b`, `c`, and `d` are the lengths (in meters) according to the provided diagram.
+The argument `rad` is the wire radius (in meters). It is assumed all wires have the same radius.
+You can provide a vector of segment counts (`seg_vec`), or you can let NEC.jl determine the number of segments per segment using the frequency in megahertz (`fmhz`).
+
+
 ### Dipole
 
 # RadiationPatterns
