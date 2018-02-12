@@ -19,6 +19,34 @@ export
     RadiationPattern,
     f2b
 
+export
+    get_lambda,
+    divide
+
+export
+    awg,
+
+    AWG1,
+    AWG2,
+    AWG3,
+    AWG4,
+    AWG5,
+    AWG6,
+    AWG7,
+    AWG8,
+    AWG9,
+    AWG10,
+    AWG11,
+    AWG12,
+    AWG13,
+    AWG14,
+    AWG15,
+    AWG16,
+    AWG17,
+    AWG18,
+    AWG19,
+    AWG20
+
 
 # functions I might need
 include("math.jl")

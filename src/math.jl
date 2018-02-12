@@ -1,5 +1,9 @@
-export get_lambda
+"""
+`get_lambda(fmhz)`
 
+Returns wavelength in meters at frequency `fmhz`.
+Argument `fmhz` is in mega-hertz.
+"""
 function get_lambda(fmhz::Real)
     c = 299792458.0       # m/s
     return c / (fmhz * 1e6)
@@ -20,7 +24,6 @@ end
 #
 # other things I want to do:
 #  add a minimum number of segments but ensure they aren't too small
-export divide
 function divide(L::Real, fmhz::Real)
     lambda = get_lambda(fmhz)
     n_segments = round(Int, 25.0 * L / lambda, RoundUp)
@@ -36,44 +39,50 @@ function divide(L::Real, fmhz::Real)
     return n_segments
 end
 
-# These constants store the RADIUS (in meters) of different AWG gauges
-export
-    AWG12,
-    AWG13,
-    AWG14,
-    AWG15,
-    AWG16,
-    AWG17
+"""
+`awg(n::Int)`
 
+Returns radius in meters of No. `n` AWG wire.
+"""
+awg(n::Int) = 0.5 * 0.001 * 0.127 * 92.0 ^ ((36.0-n) / 39.0)
+
+""" Radius in meters of size 1 AWG (American Wire Gauge) """
+const AWG1 = awg(1)
+""" Radius in meters of size 2 AWG (American Wire Gauge) """
+const AWG2 = awg(2)
+""" Radius in meters of size 3 AWG (American Wire Gauge) """
+const AWG3 = awg(3)
+""" Radius in meters of size 4 AWG (American Wire Gauge) """
+const AWG4 = awg(4)
+""" Radius in meters of size 5 AWG (American Wire Gauge) """
+const AWG5 = awg(5)
+""" Radius in meters of size 6 AWG (American Wire Gauge) """
+const AWG6 = awg(6)
+""" Radius in meters of size 7 AWG (American Wire Gauge) """
+const AWG7 = awg(7)
+""" Radius in meters of size 8 AWG (American Wire Gauge) """
+const AWG8 = awg(8)
+""" Radius in meters of size 9 AWG (American Wire Gauge) """
+const AWG9 = awg(9)
+""" Radius in meters of size 10 AWG (American Wire Gauge) """
+const AWG10 = awg(10)
+""" Radius in meters of size 11 AWG (American Wire Gauge) """
+const AWG11 = awg(11)
 """ Radius in meters of size 12 AWG (American Wire Gauge) """
-const AWG12 = 0.0020525 / 2.0
+const AWG12 = awg(12)
 """ Radius in meters of size 13 AWG (American Wire Gauge) """
-const AWG13 = 0.0018278 / 2.0
+const AWG13 = awg(13)
 """ Radius in meters of size 14 AWG (American Wire Gauge) """
-const AWG14 = 0.0016277 / 2.0
+const AWG14 = awg(14)
 """ Radius in meters of size 15 AWG (American Wire Gauge) """
-const AWG15 = 0.0014495 / 2.0
+const AWG15 = awg(15)
 """ Radius in meters of size 16 AWG (American Wire Gauge) """
-const AWG16 = 0.0012908 / 2.0
+const AWG16 = awg(16)
 """ Radius in meters of size 17 AWG (American Wire Gauge) """
-const AWG17 = 0.0011495 / 2.0
-
-export awg2diam
-function awg2diam(awg::Int)
-    if awg == 14
-        return AWG14 * 2.0
-    elseif awg == 15
-        return AWG15 * 2.0
-    elseif awg == 16
-        return AWG16 * 2.0
-    elseif awg == 17
-        return AWG17 * 2.0
-    else
-        error("Are you sure $(awg) AWG exists?")
-    end
-end
-
-export awg2rad
-function awg2rad(awg::Int)
-    return awg2diam(awg) / 2.0
-end
+const AWG17 = awg(17)
+""" Radius in meters of size 18 AWG (American Wire Gauge) """
+const AWG18 = awg(18)
+""" Radius in meters of size 19 AWG (American Wire Gauge) """
+const AWG19 = awg(19)
+""" Radius in meters of size 20 AWG (American Wire Gauge) """
+const AWG20 = awg(20)
