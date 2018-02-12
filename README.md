@@ -126,18 +126,23 @@ You can construct a Yagi by just passing in a vector of wires, so long as the dr
 Alternatively, you can use the following constructor:
 
 ```julia
-Yagi(lengths, xvals, rad, ns; z=2.0)
+Yagi(lengths, distances, rad, ns; z=0.0)
 ```
 
 where the arguments are:
 
-* `lengths` - A vector of floats, with as many elements as the Yagi antenna. The first element is the length of the reflector, the second is the length of the driven element, and the remaining elements are the lengths of the directors. All lengths are in meters.
-* `xvals` - A vector with one fewer element than the Yagi. The first element is the x-location of the reflector, which should be a negative value. The rest of the elements are the x-location of the directors, which should be positive values. The order must match the director order in `lengths`. All distances are in meters.
+* `lengths` - A vector of floats, with as many elements as the Yagi antenna. The first element is the length of the reflector, the second is the length of the driven element, and the remaining elements are the lengths of the directors (in order from closest to driven element to farthes). All lengths are in meters.
+* `distances` - A vector with one fewer element than the Yagi. The first element is the distance between the reflector and the driven element, the second element is the distance between the driven element and the first director, the third element is the distance between the first and second directors, and so on. All distances are in meters.
 * `rad` - The radius of all segments (in meters).
 * `ns` - If a single number is provided, each element will be broken into `ns` segments. Alternatively, `ns` can be a vector of segment counts. The indexing should match that of `lengths`.
 * `z` - The altitude of the antenna.
 
-Note that this command will place the Yagi elements so they are parallel to the y-axis, with the front of the antenna pointing along the positive x-axis.
+You can also pass in a single vector `params` instead of both `length` and `distances` that contains the same information; that is, `params = vcat(lengths, distances)`
+```julia
+Yagi(params, rad, ns; z=0.0)
+```
+
+Note that these commands place the Yagi elements parallel to the y-axis, with the front of the antenna pointing along the positive x-axis.
 
 
 
