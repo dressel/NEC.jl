@@ -50,11 +50,13 @@ function Yagi(lengths::Vector{T1},
     wires[2] = Wire(a, b, rad, ns_vec[2])
 
     # add director elements
+    d_offset = 0.0
     for i = 3:num_wires
         half_len = lengths[i] / 2.0
-        a = (distances[i-1], half_len, z)
-        b = (distances[i-1], -half_len, z)
+        a = (d_offset + distances[i-1], half_len, z)
+        b = (d_offset + distances[i-1], -half_len, z)
         wires[i] = Wire(a, b, rad, ns_vec[i])
+        d_offset += distances[i-1]
     end
 
     return Yagi(wires)
